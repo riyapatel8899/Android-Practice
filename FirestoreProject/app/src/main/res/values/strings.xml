@@ -2,5 +2,11 @@
     <string name="app_name">Firestore Project</string>
     <string name="edit_text_hint_title">Title</string>
     <string name="edit_text_hint_description">Description</string>
-    <string name="button_save_text">Save</string>
+    <string name="button_save_text">Add</string>
+    <string name="button_load">Load</string>
+    <string name="update_title_button">Update title</string>
+    <string name="delete_description">Delete Description</string>
+    <string name="delete_note">Delete Note</string>
+    <string name="priority">Priority</string>
+    <string name="tags">Tags</string>
 </resources>
