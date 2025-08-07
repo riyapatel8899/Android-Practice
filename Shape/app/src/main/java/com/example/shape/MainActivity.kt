@@ -16,6 +16,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.draw.drawWithCache
+import androidx.compose.ui.graphics.asComposePath
+import androidx.graphics.shapes.CornerRounding
+import androidx.graphics.shapes.RoundedPolygon
+import androidx.graphics.shapes.toPath
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +34,10 @@ class MainActivity : ComponentActivity() {
 //                    CustomTriangleShapeWithImage()
 //                    CustomRectangleShapeWithImage()
 //                    CustomSquareShapeWithImage()
-                    CustomCircleShapeWithImage()
+//                    CustomCircleShapeWithImage()
+//                    CustomRoundedCornerShapeWithImage()
+//                    BasicShapeCanvas()
+                    RoundedShapeSmoothnessExample()
                 }
             }
         }
@@ -102,21 +112,87 @@ class MainActivity : ComponentActivity() {
 //    }
 //}
 
+//@Composable
+//fun CustomCircleShapeWithImage() {
+//    val CircleShape = GenericShape { size, _ ->
+//        addOval(androidx.compose.ui.geometry.Rect(0f, 0f, size.width, size.height))
+//    }
+//    Box(
+//        modifier = Modifier
+//            .fillMaxSize(),
+//        contentAlignment = androidx.compose.ui.Alignment.Center
+//    ){
+//        Box(
+//            modifier = Modifier
+//                .size(200.dp)
+//                .clip(CircleShape)
+//                .background(Color.Red)
+//        )
+//    }
+//}
+
+//@Composable
+//fun CustomRoundedCornerShapeWithImage() {
+//    val roundedShape = RoundedCornerShape(30.dp)
+//
+//    Box(
+//        modifier = Modifier
+//            .fillMaxSize(),
+//        contentAlignment = androidx.compose.ui.Alignment.Center
+//    ) {
+//        Box(
+//            modifier = Modifier
+//                .size(width = 250.dp, height = 150.dp)
+//                .clip(roundedShape)
+//                .background(Color.Red)
+//        )
+//    }
+//}
+
 @Composable
-fun CustomCircleShapeWithImage() {
-    val CircleShape = GenericShape { size, _ ->
-        addOval(androidx.compose.ui.geometry.Rect(0f, 0f, size.width, size.height))
-    }
+fun BasicShapeCanvas() {
     Box(
         modifier = Modifier
-            .fillMaxSize(),
-        contentAlignment = androidx.compose.ui.Alignment.Center
-    ){
-        Box(
-            modifier = Modifier
-                .size(200.dp)
-                .clip(CircleShape)
-                .background(Color.Red)
-        )
-    }
+            .drawWithCache {
+                val roundedPolygon = RoundedPolygon(
+                    numVertices = 6,
+                    radius = size.minDimension / 2,
+                    centerX = size.width / 2,
+                    centerY = size.height / 2
+                )
+                val roundedPolygonPath = roundedPolygon.toPath().asComposePath()
+                onDrawBehind {
+                    drawPath(roundedPolygonPath, color = Color.Blue)
+                }
+            }
+            .fillMaxSize()
+    )
 }
+
+@Composable
+private fun RoundedShapeSmoothnessExample() {
+    // [START android_compose_graphics_polygon_rounding_smooth]
+    Box(
+        modifier = Modifier
+            .drawWithCache {
+                val roundedPolygon = RoundedPolygon(
+                    numVertices = 3,
+                    radius = size.minDimension / 2,
+                    centerX = size.width / 2,
+                    centerY = size.height / 2,
+                    rounding = CornerRounding(
+                        size.minDimension / 10f,
+                        smoothing = 0.1f
+                    )
+                )
+                val roundedPolygonPath = roundedPolygon.toPath().asComposePath()
+                onDrawBehind {
+                    drawPath(roundedPolygonPath, color = Color.Black)
+                }
+            }
+            .size(100.dp)
+    )
+
+}
+
+
