@@ -43,7 +43,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
+//
 //@Composable
 //fun CustomTriangleShapeWithImage() {
 //    val triangleShape = GenericShape { size, _ ->
@@ -65,7 +65,7 @@ class MainActivity : ComponentActivity() {
 //        )
 //    }
 //}
-//
+
 //@Composable
 //fun CustomRectangleShapeWithImage() {
 //    val RectangleShape = GenericShape { size, _ ->
@@ -111,7 +111,7 @@ class MainActivity : ComponentActivity() {
 //        )
 //    }
 //}
-
+//
 //@Composable
 //fun CustomCircleShapeWithImage() {
 //    val CircleShape = GenericShape { size, _ ->
@@ -148,27 +148,27 @@ class MainActivity : ComponentActivity() {
 //        )
 //    }
 //}
-
-@Composable
-fun BasicShapeCanvas() {
-    Box(
-        modifier = Modifier
-            .drawWithCache {
-                val roundedPolygon = RoundedPolygon(
-                    numVertices = 6,
-                    radius = size.minDimension / 2,
-                    centerX = size.width / 2,
-                    centerY = size.height / 2
-                )
-                val roundedPolygonPath = roundedPolygon.toPath().asComposePath()
-                onDrawBehind {
-                    drawPath(roundedPolygonPath, color = Color.Blue)
-                }
-            }
-            .fillMaxSize()
-    )
-}
-
+//
+//@Composable
+//fun BasicShapeCanvas() {
+//    Box(
+//        modifier = Modifier
+//            .drawWithCache {
+//                val roundedPolygon = RoundedPolygon(
+//                    numVertices = 6,
+//                    radius = size.minDimension / 2,
+//                    centerX = size.width / 2,
+//                    centerY = size.height / 2
+//                )
+//                val roundedPolygonPath = roundedPolygon.toPath().asComposePath()
+//                onDrawBehind {
+//                    drawPath(roundedPolygonPath, color = Color.Blue)
+//                }
+//            }
+//            .fillMaxSize()
+//    )
+//}
+//
 @Composable
 private fun RoundedShapeSmoothnessExample() {
     // [START android_compose_graphics_polygon_rounding_smooth]
@@ -192,7 +192,5 @@ private fun RoundedShapeSmoothnessExample() {
             }
             .size(100.dp)
     )
-
 }
-
 
