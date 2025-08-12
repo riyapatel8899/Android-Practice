@@ -22,10 +22,10 @@ class MainActivity : AppCompatActivity() {
 
         textView = findViewById(R.id.textView)
 
-        getPosts()
-        createPost()
+//        getPosts()
+//        createPost()
         updatePost(1)
-        deletePost(1)
+//        deletePost(1)
 
     }
 
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createPost() {
-        val newPost = Post(userId = 1, title = "New Title", body = "This is the body.")
+        val newPost = Post(userId = 101, title = "New Title", body = "This is the body.")
         api.createPost(newPost).enqueue(object : Callback<Post> {
             override fun onResponse(call: Call<Post>, response: Response<Post>) {
                 textView.append("POST:\n${response.body()}\n\n")

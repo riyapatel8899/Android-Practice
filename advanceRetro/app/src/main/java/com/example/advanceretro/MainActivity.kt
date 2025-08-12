@@ -32,10 +32,10 @@ class MainActivity : AppCompatActivity() {
         val api = RetrofitClient.create(tokenProvider)
         repository = PostRepository(api)
 
-        fetchPosts()
+//        fetchPosts()
         createPost()
-        updatePost(1)
-        deletePost(1)
+//        updatePost(1)
+//        deletePost(1)
     }
 
     private fun fetchPosts() {
@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createPost() {
-        val post = Post(userId = 1, title = "New Post", body = "This is a new post.")
+        val post = Post(userId = 101, title = "New Post", body = "This is a new post.")
         repository.create(post).enqueue(object : Callback<Post> {
             override fun onResponse(call: Call<Post>, response: Response<Post>) {
                 if (response.isSuccessful) {
