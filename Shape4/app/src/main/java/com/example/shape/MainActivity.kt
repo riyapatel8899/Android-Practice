@@ -89,3 +89,5 @@ class MainActivity : ComponentActivity() {
         )
     }
 }
+
+//wave shape
